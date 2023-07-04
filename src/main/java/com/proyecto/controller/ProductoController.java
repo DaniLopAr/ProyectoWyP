@@ -44,22 +44,22 @@ public class ProductoController {
     
     
     
-    /* Da error al area comentada*/
     
-//    @PostMapping("/guardar")
-//    public String productoGuardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile){
-//        if(!imagenFile.isEmpty()){
-//            productoService.save(producto);
-//            producto.setImagen(
-//                firebaseStorageService.cargaImagen(
-//                imagenFile,
-//                        "categoria",
-//                        producto.getId_producto()));
-//        }
-//        productoService.save(producto);
-//        return "redirect:/producto/listado";
-//        
-//    }
+    
+    @PostMapping("/guardar")
+    public String productoGuardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile){
+        if(!imagenFile.isEmpty()){
+            productoService.save(producto);
+            producto.setImagen(
+                firebaseStorageService.cargaImagen(
+                imagenFile,
+                        "categoria",
+                        producto.getId_producto()));
+        }
+        productoService.save(producto);
+        return "redirect:/producto/listado";
+        
+    }
     
     
     
