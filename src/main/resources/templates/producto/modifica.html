@@ -7,6 +7,10 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+        
+        <section th:replace="~{producto/fragmentos :: editarProducto}"></section>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
     </body>
 </html>
