@@ -21,6 +21,59 @@
                color: white;
                 
             }
+            
+        
+            .jumbotron {
+                background: #c31432;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to left, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to left, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                color: white;
+            }
+
+            .product-card {
+                transition: transform 0.3s;
+            }
+
+            .product-card:hover {
+                transform: scale(1.05);
+            }
+
+            body {
+                background-color: #f0f7fb;
+            }
+
+            .navbar {
+                background-color: #240b36;
+            }
+
+            .jumbotron {
+                background-color: #c31432;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: white;
+            }
+
+            .card {
+                background-color: #EDF5FF;
+                border-color: #240b36;
+        }
+        
+        .btn-primary {
+            background-color: #240b36;
+            border-color: #240b36;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3b0f4a;
+            border-color: #3b0f4a;
+        }
+        
+        footer {
+            background-color: #240b36;
+            color: white;
+        }
+    </style>
 
 
         </style>
@@ -55,39 +108,86 @@
             </nav>
         </header>
         
-        <!-- Falta agregar los contenedores para el acomodo de la pagina -->
+        
+        
+         <!-- productos destacados e informacion adicional-->
+         <section th:fragment="section" class="section">
+             
+                <section class="company-section">
+                   <div class="container">
+                       <div class="row">
+                           <div class="col-md-6">
+                               <img src="ruta/imagen-empresa.jpg" class="company-image" alt="Imagen de la empresa">
+                           </div>
+                           <div class="col-md-6">
+                               <p class="company-text">Somos una empresa dedicada a proveer los mejores repuestos para vehículos, con una amplia gama de opciones y precios competitivos. Nuestro compromiso es garantizar la calidad y satisfacción de nuestros clientes. ¡Confía en nosotros para encontrar los repuestos que necesitas!</p>
+                           </div>
+                       </div>
+                   </div>
+                </section>
+             
+                <section class="container">
+                    <h2>Productos Destacados</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <img src="https://i.ebayimg.com/images/g/iyUAAOSw3b5kYuK~/s-l1600.jpg" class="card-img-top" alt="Producto 1">
+                                <div class="card-body">
+                                    <h4 class="card-title">Producto 1</h4>
+                                    <p class="card-text">Descripción breve del producto 1.</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <img src="https://m.media-amazon.com/images/I/61H4y3DZBNL._AC_UF894,1000_QL80_.jpg" class="card-img-top" alt="Producto 2">
+                                <div class="card-body">
+                                    <h4 class="card-title">Producto 2</h4>
+                                    <p class="card-text">Descripción breve del producto 2.</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <img src="https://i.ebayimg.com/images/g/M7sAAOSwFQliC~Hu/s-l1600.jpg" class="card-img-top" alt="Producto 3">
+                                <div class="card-body">
+                                    <h4 class="card-title">Producto 3</h4>
+                                    <p class="card-text">Descripción breve del producto 3.</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section class="container my-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Sobre Nosotros</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget est fermentum, mollis odio et, consectetur mi. Duis faucibus risus vitae enim dignissim elementum.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Nuestros Servicios</h3>
+                            <ul>
+                                <li>Amplia variedad de repuestos para diferentes vehículos.</li>
+                                <li>Calidad garantizada en todos nuestros productos.</li>
+                                <li>Asesoramiento personalizado para la elección de repuestos.</li>
+                                <li>Envío rápido y seguro a cualquier parte del país.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
         
         
         
         
         
-        <aside th:fragment="aside" class="bg-info text-white mt-5 p-2 bg-light">
-            
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                  <img src="" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <img src="" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="" class="d-block w-100" alt="...">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
-            </div>
-            
-            
-            
-        </aside>
+        
         
         
         
