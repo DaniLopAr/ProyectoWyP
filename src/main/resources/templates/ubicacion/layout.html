@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+<head th:replace="~{layout/plantilla :: head}">
+        <title>Tienda de repuestos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Estilos adicionales personalizados */
+        .jumbotron {
+            background-image: url('ruta/imagen-fondo.jpg');
+            background-size: cover;
+            color: white;
+        }
+        
+        .product-card {
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .company-section {
+            background-color: #f0f7fb;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .company-image {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        
+        .company-text {
+            color: #20568F;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .who-we-are-section {
+            background-color: #c31432;
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .who-we-are-text {
+            font-size: 20px;
+        }
+        
+        .location-section {
+            background-color: #20568F;
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .location-text {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background-color: #20568F;
+            border-color: #20568F;
+        }
+        
+        .btn-primary:hover {
+            background-color: #163E67;
+            border-color: #163E67;
+        }
+        
+        footer {
+            background-color: #20568F;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="~{layout/plantilla :: header}"></header>
+
+<!-- Contenido principal -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Los mejores repuestos al mejor precio</h1>
+        <p class="lead">Encuentra repuestos de calidad para tu vehículo</p>
+    </div>
+</div>
+
+<!-- Sección de ubicación -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Ubicación</h2>
+            <p class="location-text">
+                Nos encontramos ubicados en la siguiente dirección:
+                <br>
+                Dirección de la Tienda de Repuestos
+            </p>
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.388501213681!2d-84.07391170000001!3d9.9015648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e31bc3d760e1%3A0x2896eae8b38b1248!2sRepuestos%20Salazar%20y%20Monge!5e0!3m2!1ses-419!2scr!4v1689899845993!5m2!1ses-419!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+
+<!-- Scripts de Bootstrap y JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
