@@ -1,140 +1,144 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/plantilla :: head}">
+       xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
         <title>Tienda de repuestos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        /* Estilos adicionales personalizados */
-        .jumbotron {
-            background-image: url('ruta/imagen-fondo.jpg');
-            background-size: cover;
-            color: white;
-        }
-        
-        .product-card {
-            transition: transform 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-        
-        .company-section {
-            background-color: #f0f7fb;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        .company-image {
-            max-width: 400px;
-            margin-bottom: 20px;
-        }
-        
-        .company-text {
-            color: #20568F;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        
-        .who-we-are-section {
-            background-color: #c31432;
-            color: white;
-            padding: 50px 0;
-        }
-        
-        .who-we-are-text {
-            font-size: 20px;
-        }
-        
-        body {
-            background-color: #f0f7fb;
-        }
-        
-        .navbar {
-            background-color: #20568F;
-        }
-        
-        .jumbotron {
-            background-color: #4788B9;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            color: #20568F;
-        }
-        
-        .card {
-            background-color: #EDF5FF;
-            border-color: #20568F;
-        }
-        
-        .btn-primary {
-            background-color: #20568F;
-            border-color: #20568F;
-        }
-        
-        .btn-primary:hover {
-            background-color: #163E67;
-            border-color: #163E67;
-        }
-        
-        footer {
-            background-color: #20568F;
-            color: white;
-        }
-    </style>
-</head>
-<body>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <style>
+                /* Estilos adicionales personalizados */
+                .jumbotron {
+                    background-image: url('ruta/imagen-fondo.jpg');
+                    background-size: cover;
+                    color: white;
+                }
 
-    <!-- Navbar -->
-<header th:replace="~{layout/plantilla :: header}"></header>
+                .product-card {
+                    transition: transform 0.3s;
+                }
 
-<!-- Contenido principal -->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Los mejores repuestos al mejor precio</h1>
-        <p class="lead">Encuentra repuestos de calidad para tu vehículo</p>
-    </div>
-</div>
+                .product-card:hover {
+                    transform: scale(1.05);
+                }
 
-<!-- Sección de la empresa -->
-<section class="company-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="/imagen.ubicacion.proyecto.jpg" alt=""/>
-            </div>
-            <div class="col-md-6">
-                <p class="company-text">Somos una empresa dedicada a proveer los mejores repuestos para vehículos, con una amplia gama de opciones y precios competitivos. Nuestro compromiso es garantizar la calidad y satisfacción de nuestros clientes. ¡Confía en nosotros para encontrar los repuestos que necesitas!</p>
+                .company-section {
+                    background-color: #f0f7fb;
+                    padding: 50px 0;
+                    text-align: center;
+                }
+
+                .company-image {
+                    max-width: 400px;
+                    margin-bottom: 20px;
+                }
+
+                .company-text {
+                    color: #20568F;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }
+
+                .who-we-are-section {
+                    background-color: #c31432;
+                    color: white;
+                    padding: 50px 0;
+                }
+
+                .who-we-are-text {
+                    font-size: 20px;
+                }
+
+                body {
+                    background-color: #f0f7fb;
+                }
+
+                .navbar {
+                    background-color: #20568F;
+                }
+
+                .jumbotron {
+                    background-color: #4788B9;
+                }
+
+                h1, h2, h3, h4, h5, h6 {
+                    color: #20568F;
+                }
+
+                .card {
+                    background-color: #EDF5FF;
+                    border-color: #20568F;
+                }
+
+                .btn-primary {
+                    background-color: #20568F;
+                    border-color: #20568F;
+                }
+
+                .btn-primary:hover {
+                    background-color: #163E67;
+                    border-color: #163E67;
+                }
+
+                footer {
+                    background-color: #20568F;
+                    color: white;
+                }
+            </style>
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <header th:replace="~{layout/plantilla :: header}"></header>
+
+        <!-- Contenido principal -->
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Los mejores repuestos al mejor precio</h1>
+                <p class="lead">Encuentra repuestos de calidad para tu vehículo</p>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- Sección de "Quiénes Somos" -->
-<section class="who-we-are-section">
-    <div class="container">
-        <h2 class="text-center mb-4">Quiénes Somos</h2>
-        <p class="who-we-are-text">
-            En la Tienda de Repuestos, somos un equipo apasionado por los automóviles y la movilidad. Nuestra misión es proporcionar a nuestros clientes los mejores repuestos y accesorios para mantener sus vehículos en perfecto estado y a precios asequibles.
-            <br><br>
-            Con años de experiencia en el mercado, hemos establecido relaciones sólidas con proveedores de repuestos confiables y reconocidos. Nuestra selección de productos está cuidadosamente curada para garantizar la calidad, durabilidad y compatibilidad con una amplia variedad de vehículos.
-            <br><br>
-            En nuestra tienda, encontrarás un equipo de profesionales altamente capacitados y amantes de los automóviles, dispuestos a brindarte un servicio personalizado y asesoramiento experto para que encuentres exactamente lo que necesitas.
-            <br><br>
-            Agradecemos la confianza de nuestros clientes a lo largo de los años y continuamos esforzándonos para ofrecer una experiencia de compra excepcional. Ya sea que estés buscando una pieza específica o desees mejorar el rendimiento de tu vehículo, ¡estamos aquí para ayudarte!
-        </p>
-    </div>
-</section>
+        <!-- Sección de la empresa -->
+        <section class="company-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        
+                        <img src="img/proyectoImagen.png" alt=""/>
+                        
+                        
 
-<!-- Footer -->
-<footer th:replace="~{layout/plantilla :: footer}"></footer>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="company-text">Somos una empresa dedicada a proveer los mejores repuestos para vehículos, con una amplia gama de opciones y precios competitivos. Nuestro compromiso es garantizar la calidad y satisfacción de nuestros clientes. ¡Confía en nosotros para encontrar los repuestos que necesitas!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Scripts de Bootstrap y JavaScript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
+        <!-- Sección de "Quiénes Somos" -->
+        <section class="who-we-are-section">
+            <div class="container">
+                <h2 class="text-center mb-4">Quiénes Somos</h2>
+                <p class="who-we-are-text">
+                    En la Tienda de Repuestos, somos un equipo apasionado por los automóviles y la movilidad. Nuestra misión es proporcionar a nuestros clientes los mejores repuestos y accesorios para mantener sus vehículos en perfecto estado y a precios asequibles.
+                    <br><br>
+                            Con años de experiencia en el mercado, hemos establecido relaciones sólidas con proveedores de repuestos confiables y reconocidos. Nuestra selección de productos está cuidadosamente curada para garantizar la calidad, durabilidad y compatibilidad con una amplia variedad de vehículos.
+                            <br><br>
+                                    En nuestra tienda, encontrarás un equipo de profesionales altamente capacitados y amantes de los automóviles, dispuestos a brindarte un servicio personalizado y asesoramiento experto para que encuentres exactamente lo que necesitas.
+                                    <br><br>
+                                            Agradecemos la confianza de nuestros clientes a lo largo de los años y continuamos esforzándonos para ofrecer una experiencia de compra excepcional. Ya sea que estés buscando una pieza específica o desees mejorar el rendimiento de tu vehículo, ¡estamos aquí para ayudarte!
+                                            </p>
+                                            </div>
+                                            </section>
+
+                                            <!-- Footer -->
+                                            <footer th:replace="~{layout/plantilla :: footer}"></footer>
+
+                                            <!-- Scripts de Bootstrap y JavaScript -->
+                                            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
 
 
-</body>
-</html> 
+                                            </body>
+                                            </html> 
