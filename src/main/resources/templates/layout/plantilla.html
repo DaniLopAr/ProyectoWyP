@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:fragment="head">
-        
+
         <title>Tienda de repuestos</title>
         <meta charset="UTF-8"/>
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>        
@@ -18,11 +19,11 @@
                 background: linear-gradient(to left, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             }
             .aside, .footer{
-               color: white;
-                
+                color: white;
+
             }
-            
-        
+
+
             .jumbotron {
                 background: #c31432;  /* fallback for old browsers */
                 background: -webkit-linear-gradient(to left, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
@@ -57,240 +58,262 @@
             .card {
                 background-color: #EDF5FF;
                 border-color: #240b36;
-        }
-        
-        .btn-primary {
-            background-color: #240b36;
-            border-color: #240b36;
-        }
-        
-        .btn-primary:hover {
-            background-color: #3b0f4a;
-            border-color: #3b0f4a;
-        }
-        
-        footer {
-            background-color: #240b36;
-            color: white;
-        }
-    </style>
+            }
+
+            .btn-primary {
+                background-color: #240b36;
+                border-color: #240b36;
+            }
+
+            .btn-primary:hover {
+                background-color: #3b0f4a;
+                border-color: #3b0f4a;
+            }
+
+            footer {
+                background-color: #240b36;
+                color: white;
+            }
+        </style>
 
 
-        
-        </head>
+
+    </head>
     <body>
-        
-        
+
+
         <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Tienda de repuestos</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Marcas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" th:href="@{/ubicacion/layout}">Ubicacion</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" th:href="@{/quienesSomos/layout}">Quienes somos?</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-            </nav>
-        </header>
-        
-        <!DOCTYPE html>
-<html>
-<head>
-  <title>Mi página web</title>
-  <style>
-    /* Estilos CSS para el menú horizontal */
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #f1f1f1;
-    }
-
-    li {
-      float: left;
-    }
-
-    li a {
-      display: block;
-      color: #000;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      background-color: #ddd;
-    }
-
-    /* Estilos CSS para el botón "Quiénes somos" */
-    .quienes-somos-button {
-      display: inline-block;
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .quienes-somos-button:hover {
-      background-color: #45a049;
-    }
-
-    /* Estilos CSS para la sección "Quiénes somos" */
-    section#quienes-somos {
-      background-color: #f9f9f9;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>Bienvenidos a nuestra página</h1>
-</header>
-    
-    
-
-        
-         <!-- productos destacados e informacion adicional-->
-         <section th:fragment="section" class="section">
-             
-                <section class="company-section">
-                   <div class="container">
-                       <div class="row">
-                           <div class="col-md-6">
-                               <img src="ruta/imagen-empresa.jpg" class="company-image" alt="Imagen de la empresa">
-                           </div>
-                           <div class="col-md-6">
-                               <p class="company-text">Somos una empresa dedicada a proveer los mejores repuestos para vehículos, con una amplia gama de opciones y precios competitivos. Nuestro compromiso es garantizar la calidad y satisfacción de nuestros clientes. ¡Confía en nosotros para encontrar los repuestos que necesitas!</p>
-                           </div>
-                       </div>
-                   </div>
-                </section>
-             
-                <section class="container">
-                    <h2>Productos Destacados</h2>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card product-card">
-                                <img src="https://i.ebayimg.com/images/g/iyUAAOSw3b5kYuK~/s-l1600.jpg" class="card-img-top" alt="Producto 1">
-                                <div class="card-body">
-                                    <h4 class="card-title">Producto 1</h4>
-                                    <p class="card-text">Descripción breve del producto 1.</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card">
-                                <img src="https://m.media-amazon.com/images/I/61H4y3DZBNL._AC_UF894,1000_QL80_.jpg" class="card-img-top" alt="Producto 2">
-                                <div class="card-body">
-                                    <h4 class="card-title">Producto 2</h4>
-                                    <p class="card-text">Descripción breve del producto 2.</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card">
-                                <img src="https://i.ebayimg.com/images/g/M7sAAOSwFQliC~Hu/s-l1600.jpg" class="card-img-top" alt="Producto 3">
-                                <div class="card-body">
-                                    <h4 class="card-title">Producto 3</h4>
-                                    <p class="card-text">Descripción breve del producto 3.</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                
-                <section class="container my-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3>Sobre Nosotros</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget est fermentum, mollis odio et, consectetur mi. Duis faucibus risus vitae enim dignissim elementum.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>Nuestros Servicios</h3>
-                            <ul>
-                                <li>Amplia variedad de repuestos para diferentes vehículos.</li>
-                                <li>Calidad garantizada en todos nuestros productos.</li>
-                                <li>Asesoramiento personalizado para la elección de repuestos.</li>
-                                <li>Envío rápido y seguro a cualquier parte del país.</li>
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" th:href="index.html">Tienda de repuestos</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Marcas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
+                                </li>
                             </ul>
+                            
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/ubicacion/layout}">Ubicacion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/quienesSomos/layout}">Quienes somos?</a>
+                                </li>
+                                
+                            </ul>
+                            
+                            <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/login}">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                            <li class="nav-item text-white my-auto">
+                                
+                                <img th:src='@{${session.imagenUsuario}}'
+                                     alt='Imagen del usuario'
+                                     height="40"
+                                     class='rounded-circle'/>
+                                
+                                <span sec:authentication='name'>Bob</span>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post"
+                                      th:action="@{/logout}">
+                                    <button class='btn btn-dark'>
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        </header>
+
+
+
+
+        <body>    
+            <!-- productos destacados e informacion adicional-->
+            <section th:fragment="section" class="section">
+
+                <section class="company-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="ruta/imagen-empresa.jpg" class="company-image" alt="Imagen de la empresa">
+                            </div>
+                            <div class="col-md-6">
+                                <p class="company-text">Somos una empresa dedicada a proveer los mejores repuestos para vehículos, con una amplia gama de opciones y precios competitivos. Nuestro compromiso es garantizar la calidad y satisfacción de nuestros clientes. ¡Confía en nosotros para encontrar los repuestos que necesitas!</p>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-            </section>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <footer th:fragment="footer" class="bg-info text-white mt-5 p-2 bg-light">
-               
-            <div class="container">
-                <div class="col">
-                    <p class="lead text-center">
-                        &COPY Derechos de autor
-                    </p>
-                </div>
-            </div>
-            
-        </footer>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    </body>
-</html>
+                <br>
+                    <br>
+
+                        <section class="container">
+                            <h2>Nuestro servicio tiene:</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card product-card">
+                                        <img src="https://masaki.pe/wp-content/uploads/2021/01/happy-customer-buying-new-car-dealership.jpg" class="card-img-top" alt="Banner 1" height="200">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Buen servicio al cliente</h4>
+
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card product-card">
+                                        <img src="https://static.vecteezy.com/system/resources/previews/015/452/522/non_2x/discount-icon-in-trendy-flat-style-isolated-on-background-discount-icon-page-symbol-for-your-web-site-design-discount-icon-logo-app-ui-discount-icon-eps-vector.jpg" class="card-img-top" alt="Banner 2" height="200">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Temporada de descuentos</h4>
+
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card product-card">
+                                        <img src="https://us.123rf.com/450wm/antoniodiaz/antoniodiaz1807/antoniodiaz180701185/105282794-cliente-satisfecho-estrechando-la-mano-con-el-mec%C3%A1nico-de-autom%C3%B3viles-en-el-taller-de-reparaci%C3%B3n-de.jpg" class="card-img-top" alt="Banner 3" height="200">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Clientes satisfechos!</h4>
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <br>
+                            <br>
+
+                                <div class="container" margin="100">
+                                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="https://img.freepik.com/vector-gratis/elegante-fondo-blanco-lineas-brillantes_1017-17580.jpg?w=360" class="d-block w-100" alt="..."  height="500">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5 style="color: #000000;">Etiqueta de la tercera diapositiva</h5>
+                                                        <p style="color: #000000;">Algún contenido placeholder representativo para la tercera diapositiva.</p>
+
+                                                    </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="https://img.freepik.com/vector-gratis/elegante-fondo-blanco-lineas-brillantes_1017-17580.jpg?w=360" class="d-block w-100" alt="..."  height="500">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5 style="color: #000000;">Etiqueta de la tercera diapositiva</h5>
+                                                        <p style="color: #000000;">Algún contenido placeholder representativo para la tercera diapositiva.</p>
+                                                    </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="https://img.freepik.com/vector-gratis/elegante-fondo-blanco-lineas-brillantes_1017-17580.jpg?w=360" class="d-block w-100" alt="..."  height="500">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5 style="color: #000000;">Etiqueta de la tercera diapositiva</h5>
+                                                        <p style="color: #000000;">Algún contenido placeholder representativo para la tercera diapositiva.</p>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Anterior</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Siguiente</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <section class="container my-5">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3>Sobre Nosotros</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget est fermentum, mollis odio et, consectetur mi. Duis faucibus risus vitae enim dignissim elementum.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3>Nuestros Servicios</h3>
+                                            <ul>
+                                                <li>Amplia variedad de repuestos para diferentes vehículos.</li>
+                                                <li>Calidad garantizada en todos nuestros productos.</li>
+                                                <li>Asesoramiento personalizado para la elección de repuestos.</li>
+                                                <li>Envío rápido y seguro a cualquier parte del país.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                </section>
+
+
+
+
+
+
+
+
+
+                                <footer th:fragment="footer" class="bg-info text-white mt-5 p-2 bg-light">
+
+                                    <div class="container">
+                                        <div class="col">
+                                            <p class="lead text-center">
+                                                &COPY Derechos de autor
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                </body>
+                                </html>
