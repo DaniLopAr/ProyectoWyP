@@ -5,12 +5,16 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>Tienda de repuestos</title>
+        <style>
+
+        </style>
+
     </head>
     <body>
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                    <div class="col-md-3">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -83,44 +87,76 @@
             </div>
         </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!--  Sección principal para mostrar la informaccion de la entidad producto -->
         <section th:fragment="listadoProductos" id="productos">
             <section class="container" style="margin-top: 20px;">
-    <div class="row">
-        <h3 class="text-center">Listado de productos:</h3>
-        <!-- Muestra los productos 
-        Se debe cambiar esteticamente, no se ve bien, queda pendiente para el ultimo avance
-        -->
-        <div th:if="${productos != null and !productos.empty}">
-            <!-- Itera sobre los productos en grupos de 2 -->
-            <div th:each="producto, iterStat : ${productos}" class="col-lg-10">
-                <!-- Cada producto se mostrará dentro de una columna-->
-                <div class="card">
-                    <div class="card-body">     
-                        <!-- Agrega el contenido del producto -->
-                        <h4 class="card-subtitle mb-2 text-muted text-end" th:text="${producto.id_producto}"></h4>
-                        <h5 class="card-title" th:text="${producto.descripcion}"></h5>
-                        <h6 class="card-text" th:text="${producto.marca}"></h6>
-                        <h7 class="card-text" th:text="${producto.precio}"></h7>
-                        <br/>
-                        <figure>
-                            <br/>
-                            <figcaption>
-                                <img th:src="${producto.imagen}" height="200" />
-                            </figcaption>
-                            <br/>
-                            <a th:href="@{/producto/modificar/}+${producto.id_producto} " sec:authorize="hasRole('ROLE_ADMIN')" ><button class="btn btn-warning">Editar</button></a>
-                            <br/>
-                            <br/>
-                            <a th:href="@{/producto/eliminar/}+${producto.id_producto}" sec:authorize="hasRole('ROLE_ADMIN')" ><button class="btn btn-danger">Eliminar</button></a>
-                        </figure>   
+                <div class="row">
+                    <h3 class="text-center">Listado de productos:</h3>
+                    <!-- Muestra los productos 
+                    
+                    Se debe cambiar esteticamente, no se ve bien, queda pendiente para el ultimo avance
+                    -->
+                    <div th:if="${productos != null and !productos.empty}">
+                        <!-- Itera sobre los productos en grupos de 2 -->
+                        <div th:each="producto, iterStat : ${productos}" class="col-lg-10">
+                            <!-- Cada producto se mostrará dentro de una columna-->
+                            <div class="card custom-card">
+
+                                <div class="card-body d-flex justify-content-between">     
+                                    <!-- Agrega el contenido del producto -->
+                                    <h4 class="card-subtitle mb-2 text-muted text-end" th:text="${producto.id_producto}"></h4>
+                                    <h5 class="card-title" th:text="${producto.descripcion}"></h5>
+                                    <h6 class="card-text" th:text="${producto.marca}"></h6>
+                                    <h7 class="card-text" th:text="${producto.precio}"></h7>
+                                    <br/>
+                                    <figure>
+                                        <br/>
+
+                                        <br/>
+                                        
+                                        <div align="right">
+                                            <a th:href="@{/producto/modificar/}+${producto.id_producto} "  ><button class="btn btn-warning">Editar</button></a>
+                                            <br/>
+                                            <br/>
+                                            <a th:href="@{/producto/eliminar/}+${producto.id_producto}"  ><button class="btn btn-danger">Eliminar</button></a>
+                                        </div>
+                                        
+                                    </figure>   
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
         </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Fragmento que se utiliza en la página modifca.html -->
         <section th:fragment="editarProducto">

@@ -1,6 +1,89 @@
-body{
-    background: #c31432;  
-    background: -webkit-linear-gradient(to left, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+body {
+    background-color: #B7999C;
+}
+
+.navbar {
+    background-color: #AAAAAA;
+}
+
+.footer {
+    background-color: #AAAAAA;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #071013;
+}
+
+.card {
+    background-color: #EDF5FF;
+    border-color: #EB5160;
+}
+
+.btn-primary {
+    background-color: #EB5160;
+    border-color: #EB5160;
+}
+
+.btn-primary:hover {
+    background-color: #3b0f4a;
+    border-color: #3b0f4a;
+}
+
+footer {
+    background-color: #AAAAAA;
+    color: white;
+}
+
+.jumbotron {
+    background-color: #EB5160;
+    background-image: url('ruta/imagen-fondo.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.product-card {
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.company-section {
+    background-color: #f0f7fb;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.company-image {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.company-text {
+    color: #071013;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.who-we-are-section {
+    background-color: #c31432;
+    color: white;
+    padding: 50px 0;
+}
+
+.who-we-are-text {
+    font-size: 20px;
+}
+
+.location-section {
+    background-color: #20568F;
+    color: white;
+    padding: 50px 0;
+}
+
+.location-text {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
