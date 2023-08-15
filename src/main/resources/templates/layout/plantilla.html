@@ -159,7 +159,7 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Marcas</a>
+                                    <a class="nav-link active" th:href="@{/marca/listado}">Marcas</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/producto/listado}">Productos</a>

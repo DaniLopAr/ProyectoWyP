@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Tienda de repuestos</title>
+        <style>
+
+        </style>
+
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarMarca">
+                            <i class="fas fa-plus"></i> Agregar marcas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fragmento para agregar marca -->
+        <section th:fragment="agregarMarca">
+            <div id="agregarMarca" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar marca</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <!-- con el fragmento de marca se llama a la clase marca para poder agregar al formulario los detos de marca de la base de datos -->
+                        <form th:action="@{/marca/guardar}" th:object="${Marca}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+
+                            <div class="mb-3">
+                                <select class="form-select" aria-label="Default select example" name="marca.id_marca">
+                                    <option th:each="marca : ${marcas}"
+                                            th:value="${marca.id_marca}">[[${marca.descripcion}]]</option>
+                                </select>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{marca.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{marca.precio}]]</label>
+                                    <input type="text" class="form-control" name="precio" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">marca</label>
+                                    <input type="text" class="form-control" name="marca" required="true"/>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="activo">[[#{marca.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen">[[#{marca.imagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--  Sección principal para mostrar la informaccion de la entidad marca -->
+        <section th:fragment="listadoMarcas" id="marcas">
+            <section class="container" style="margin-top: 20px;">
+                <div class="row">
+                    <h3 class="text-center">Listado de marcas:</h3>
+                    <!-- Muestra los marcas 
+                    
+                    Se debe cambiar esteticamente, no se ve bien, queda pendiente para el ultimo avance
+                    -->
+                    <div th:if="${marcas != null and !marcas.empty}">
+                        <!-- Itera sobre los marcas en grupos de 2 -->
+                        <div th:each="marca, iterStat : ${marcas}" class="col-lg-10">
+                            <!-- Cada marca se mostrará dentro de una columna-->
+                            <div class="card" >
+
+                                <div class="card-body d-flex justify-content-between">     
+                                    <!-- Agrega el contenido del marca -->
+                                    <h4 class="card-subtitle mb-2 text-muted text-end" th:text="${marca.id_marca}"></h4>
+                                    <h5 class="card-title" th:text="${marca.descripcion}"></h5>
+                                    <h7 class="card-text" th:text="${marca.activo}"></h7>
+                                    <br/>
+                                    <figure>
+                                        <br/>
+
+                                        <br/>
+                                        
+                                        <div align="right">
+                                            <a th:href="@{/marca/modificar/}+${marca.id_marca} "  ><button class="btn btn-warning">Editar</button></a>
+                                            <br/>
+                                            <br/>
+                                            <a th:href="@{/marca/eliminar/}+${marca.id_marca}"  ><button class="btn btn-danger">Eliminar</button></a>
+                                        </div>
+                                        
+                                    </figure>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarMarca">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/marca/guardar}" 
+                          th:object="${marca}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="id_marca" th:field="*{id_marca}"/>
+                        <input type="hidden" name="imagen" th:field="*{imagen}"/>
+                        <section th:replace="~{marca/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Editar</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <!-- Cambiar el field en el minuto 01:10:00 -->
+                                                <div class="mb-3">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                            name="marca.id_marca"
+                                                            th:fiel="*{id_marca}">
+                                                        <option th:each="marca : ${marcas}"
+                                                                th:value="${marca.id_marca}">Descripcion</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="descripcion">Descripcion del marca</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="descripcion" th:field="*{descripcion}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="precio">Precio</label>
+                                                    <input type="text" class="form-control" name="precio"
+                                                           th:field="*{precio}" required="true"/>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="marca">Marca</label>
+                                                    <input type="text" class="form-control" name="marca" 
+                                                           th:field="*{marca}" required="true"/>
+                                                </div>
+
+
+
+
+                                                <div class="mb-3">
+                                                    <label for="activo">Estado</label>
+                                                    <input class="form-check-input" 
+                                                           type="checkbox" 
+                                                           name="activo" 
+                                                           id="activo"
+                                                           th:field="*{activo}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="imagen">Imagen</label>
+                                                    <input class="form-control" type="file" name="imagenFile"
+                                                           onchange="readURL(this);" />
+                                                    <img id="blah" th:src="@{${marca.imagen}}" alt="imagen" height="200"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/marca/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/marca/eliminar/}+${marca.id_marca}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
