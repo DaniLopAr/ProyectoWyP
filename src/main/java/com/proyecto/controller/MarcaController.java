@@ -46,10 +46,17 @@ public class MarcaController {
     
     
     
+    
+    
     @PostMapping("/guardar")
     public String marcaGuardar(Marca marca, @RequestParam("imagenFile") MultipartFile imagenFile){
         if(!imagenFile.isEmpty()){
             marcaService.save(marca);
+            marca.setRuta_imagen(
+                firebaseStorageService.cargaImagen(
+                imagenFile,
+                        "categoria",
+                        marca.getId_marca()));
             
         }
         marcaService.save(marca);

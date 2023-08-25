@@ -16,7 +16,9 @@ public class Marca implements Serializable{
     @Column(name="id_marca")
     private long id_marca;
     private String descripcion;
+    private String ruta_imagen;
     private boolean activo;
+    
     
     
     public Marca(String descripcion, boolean activo){

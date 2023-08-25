@@ -75,18 +75,18 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/", "/index", "/producto/**", "/marca/**",
+                .requestMatchers("/", "/index",  "/producto/**", "/marca/**",
                         "/carrito/**", "/quienesSomos/**", "/ubicacion/**",
-                        "/registro/**", "/js/**", "/webjars/**")
+                        "/registro/**", "/js/**", "/webjars/**", "/error/**")
                 .permitAll()
                 .requestMatchers(
                         "/producto/nuevo", "/producto/guardar",
                         "/producto/modificar/**", "/producto/eliminar/**",
-                        "/marca/nuevo", "/marca/guardar",
+                        "/marca/nuevo/**", "/marca/guardar/**",
                         "/marca/modificar/**", "/marca/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar",
                         "/usuario/modificar/**", "/usuario/eliminar/**",
-                        "/reportes/**"
+                         "/reportes/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/producto/listado",
@@ -102,25 +102,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("juan")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-        UserDetails sales = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-        UserDetails user = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, sales, admin);
-    }
+
 
     @Autowired
     UserDetailsService userDetailsService;

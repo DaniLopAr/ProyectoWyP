@@ -4,6 +4,15 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
+        <script>
+            function addCard(formulario) {
+                var valor = formulario.elements[0].value;
+                var url = '/carrito/agregar';
+                url = url + '/' + valor;
+                $("#resultsBlock").load(url);
+            }
+
+        </script>
         <title>Tienda de repuestos</title>
         <style>
 
@@ -12,9 +21,9 @@
     </head>
     <body>
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
+            <div class="container" >
                 <div class="row">
-                    <div class="col-md-3">   
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_VENDEDOR')">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -36,7 +45,7 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
+                        <div class="modal-header text-white" style="background-color: #EB5160">
                             <h5 class="modal-title">Agregar producto</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
@@ -44,12 +53,7 @@
                         <form th:action="@{/producto/guardar}" th:object="${Producto}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
 
-                            <div class="mb-3">
-                                <select class="form-select" aria-label="Default select example" name="producto.id_producto">
-                                    <option th:each="producto : ${productos}"
-                                            th:value="${producto.id_producto}">[[${producto.descripcion}]]</option>
-                                </select>
-                            </div>
+
                             <div class="modal-body">
 
 
@@ -59,11 +63,11 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="descripcion">[[#{producto.precio}]]</label>
+                                    <label for="precio">[[#{producto.precio}]]</label>
                                     <input type="text" class="form-control" name="precio" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="descripcion">marca</label>
+                                    <label for="marca">marca</label>
                                     <input type="text" class="form-control" name="marca" required="true"/>
                                 </div>
 
@@ -106,37 +110,59 @@
             <section class="container" style="margin-top: 20px;">
                 <div class="row">
                     <h3 class="text-center">Listado de productos:</h3>
-                    <!-- Muestra los productos 
-                    
-                    Se debe cambiar esteticamente, no se ve bien, queda pendiente para el ultimo avance
-                    -->
-                    <div th:if="${productos != null and !productos.empty}">
-                        <!-- Itera sobre los productos en grupos de 2 -->
-                        <div th:each="producto, iterStat : ${productos}" class="col-lg-10">
-                            <!-- Cada producto se mostrará dentro de una columna-->
-                            <div class="card custom-card">
 
-                                <div class="card-body d-flex justify-content-between">     
+
+                    <div id="resultsBlock">
+                        
+                    </div>
+                    
+                    <div class="row row-cols-3" 
+                         th:if="${productos != null and !productos.empty}">
+                        <!-- Itera sobre los productos en grupos de 2 -->
+                        <div th:each="producto, iterStat : ${productos}">
+                            <!-- Cada producto se mostrará dentro de una columna-->
+                            <div class="card border" >
+
+                                <div class="card-body bg-light border ">     
                                     <!-- Agrega el contenido del producto -->
-                                    <h4 class="card-subtitle mb-2 text-muted text-end" th:text="${producto.id_producto}"></h4>
-                                    <h5 class="card-title" th:text="${producto.descripcion}"></h5>
-                                    <h6 class="card-text" th:text="${producto.marca}"></h6>
-                                    <h7 class="card-text" th:text="${producto.precio}"></h7>
+                                    <img class="card__image border bg-light" th:src="@{${producto.imagen}}" height="200" widht="100" alt="imagenProducto" />
+                                    <br/>
+                                    <br/>
+
+                                    <h4 class="card-title text-left" th:text="${producto.descripcion}"></h4>
+                                    <h4 class="card-title text-left" th:text="${producto.marca}"></h4>
+                                    <h4 class="card-title text-left" th:text="${producto.precio}"></h4>
+                                    <h4 class="card-title text-left" th:text="'Existencias '+ ${producto.existencias}"></h4>
+
+
+
                                     <br/>
                                     <figure>
                                         <br/>
 
-                                        <br/>
-                                        
-                                        <div align="right">
-                                            <a th:href="@{/producto/modificar/}+${producto.id_producto} "  ><button class="btn btn-warning">Editar</button></a>
-                                            <br/>
-                                            <br/>
+                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                            <a th:href="@{/producto/modificar/}+${producto.id_producto} "  ><button class="btn btn-info">Modificar</button></a>
+
                                             <a th:href="@{/producto/eliminar/}+${producto.id_producto}"  ><button class="btn btn-danger">Eliminar</button></a>
                                         </div>
-                                        
+
+
+                                        <form>
+                                            <input type="hidden" th:value="${producto.id_producto}"/>
+                                                
+                                            <button class="btn btn-ligth" id="addCar" 
+                                                    name="addCar" onclick="addCard(this.form)" 
+                                                    type="button">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+                                        </form>
+
+
                                     </figure>   
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -181,14 +207,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <!-- Cambiar el field en el minuto 01:10:00 -->
-                                                <div class="mb-3">
-                                                    <select class="form-select" aria-label="Default select example"
-                                                            name="producto.id_producto"
-                                                            th:fiel="*{id_producto}">
-                                                        <option th:each="producto : ${productos}"
-                                                                th:value="${producto.id_producto}">Descripcion</option>
-                                                    </select>
-                                                </div>
+
 
                                                 <div class="mb-3">
                                                     <label for="descripcion">Descripcion del producto</label>
@@ -253,6 +272,102 @@
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-check"></i> [[#{accion.guardar}]]
                         </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Carrito -->
+
+        <!-- Este fragmento es el que hace que se ver el boton de "ver Carrito" cuando ya hay algo en el carrito de Compras -->
+        <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
+            <form action="/carrito/listado">
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    <i class="fas fa-cart-plus"></i>
+                    [[#{carrito.verCarrito}]] [[${listaTotal}]]
+                </button>
+            </form>
+        </div>  
+
+        <!-- Este fragmento para ver los productos que estan en el carrito-->
+
+        <section th:fragment="listadoCarrito" id="items">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{carrito.titulo}]]</h4>
+                            </div>
+                            <div th:if="${items != null and !items.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>[[#{producto.descripcion}]]</th>
+                                            <th>[[#{producto.precio}]]</th>
+                                            <th>[[#{carrito.cantidad}]]</th>
+                                            <th>[[#{carrito.total}]]</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="item, contador : ${items}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${item.descripcion}]]</td>
+                                            <td class="text-end">[[${item.precio}]]</td>
+                                            <td class="text-center">[[${item.cantidad}]]</td>
+                                            <td class="text-center">[[${item.cantidad*item.precio}]]</td>
+                                            <td>
+                                                <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
+                                                   class="btn btn-danger">
+                                                    <i class='fas fa-trash'></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/carrito/modificar/}+${item.idProducto}"
+                                                   class="btn btn-success">
+                                                    <i class='fas fa-pencil'></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${items== null or items.empty}">
+                                [[#{carrito.no_mostrar}]]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-primary text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{carrito.totalCompra}]]</h3>
+                                <h4 class="fs-4">
+                                    [[${carritoTotal}]]
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <a th:href="@{/}"
+                                   class="btn btn-success">
+                                    <i class='fas fa-reply'></i> [[#{carrito.seguirComprando}]]
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card text-center bg-info text-white mb-3">
+                            <div class="card-body">
+                                <a th:href="@{/facturar/carrito}"
+                                   class="btn btn-info">
+                                    <i class='fas fa-fordward'></i> [[#{carrito.facturar}]]
+                                </a>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
